@@ -7,7 +7,7 @@ import { errorConverter, errorHandler } from './api/middlewares/error.middleware
 import * as morgan from './config/morgan.js';
 
 // routes
-// import routesV1 from './api/routes/v1';
+import routesV1 from './api/routes/v1/index.js';
 
 // libs / utils
 import httpStatus from 'http-status';
@@ -29,7 +29,7 @@ const setupApp = async () => {
     app.use(morgan.successHandler);
     app.use(morgan.errorHandler);
 
-    // app.use('/api/v1', routesV1);
+    app.use('/api/v1', routesV1);
 
     // send back a 404 error for any unknown api request
     app.use('*', (req, res, next) => {
