@@ -1,12 +1,13 @@
 import morgan from 'morgan';
 import logger from './logger.js';
 import config from './config.js';
-import Environments from './globals/environments.js';
+import Environments from '../globals/Environments.js';
+import { Request, Response } from 'express';
 
-morgan.token('message', (req, res) => res.locals.errorMessage || '');
-morgan.token('user', (req, res) => req.user?.username || '');
-morgan.token('req-body', (req) => JSON.stringify(req.body) || '');
-morgan.token('res-body', (req, res) => JSON.stringify(res.__custombody__) || '');
+morgan.token('message', (req: Request, res: Response) => res.locals.errorMessage || '');
+morgan.token('user', (req: Request, res: Response) => req.user?.username || '');
+morgan.token('req-body', (req: Request) => JSON.stringify(req.body) || '');
+morgan.token('res-body', (req: Request, res: Response) => JSON.stringify(res.__custombody__) || '');
 
 const getIpFormat = () => (config.env === Environments.Production ? ':remote-addr - ' : '');
 const successResponseFormat = `${getIpFormat()}:method :url :status :user-agent :user :response-time ms`;

@@ -9,7 +9,7 @@ const server = app.listen(config.port, () => {
     logRegisteredRoutes(app);
 });
 
-const unexpectedErrorHandler = (error) => {
+const unexpectedErrorHandler = (error: Error) => {
     logger.error(error);
     exitHandler();
 };

@@ -1,5 +1,17 @@
+type ApiErrorOptions = {
+    statusCode: number;
+    message: string;
+    data?: any;
+    isOperational?: boolean;
+    stack?: any;
+};
+
 class ApiError extends Error {
-    constructor({ statusCode, message, data, isOperational, stack }) {
+    statusCode: number;
+    isOperational: boolean;
+    data: any;
+    stack: any;
+    constructor({ statusCode, message, data, isOperational, stack }: ApiErrorOptions) {
         super(message);
         this.statusCode = statusCode;
         this.isOperational = isOperational || true;

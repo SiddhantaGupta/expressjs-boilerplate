@@ -13,6 +13,8 @@ import routesV1 from './api/routes/v1/index.js';
 import httpStatus from 'http-status';
 import ApiError from './utilities/ApiError.js';
 
+import { Response } from 'express';
+
 const setupApp = async () => {
     const app = express();
 
@@ -22,7 +24,7 @@ const setupApp = async () => {
 
     // setting __custombody__ as response body so that morgan can access it later
     const originalSend = app.response.send;
-    app.response.send = function sendOverWrite(body) {
+    app.response.send = function (body: any): any {
         originalSend.call(this, body);
         this.__custombody__ = body;
     };

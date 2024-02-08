@@ -4,8 +4,8 @@
  * @param {string[]} keys
  * @returns {Object}
  */
-const pick = (object, keys) => {
-    return keys.reduce((obj, key) => {
+const pick = <ObjectType extends object = any>(object: ObjectType, keys: (keyof ObjectType)[]) => {
+    return keys.reduce((obj: Partial<ObjectType>, key) => {
         if (object && Object.prototype.hasOwnProperty.call(object, key)) {
             obj[key] = object[key];
         }

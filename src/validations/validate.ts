@@ -1,8 +1,9 @@
 import { fromZodError } from 'zod-validation-error';
 import httpStatus from 'http-status';
 import ApiError from '../utilities/ApiError.js';
+import { Schema } from 'zod';
 
-const validate = async (schema, data) => {
+const validate = async (schema: Schema, data: any) => {
     const result = schema.safeParse(data);
     if (!result.success) {
         console.log(fromZodError(result.error).toString());

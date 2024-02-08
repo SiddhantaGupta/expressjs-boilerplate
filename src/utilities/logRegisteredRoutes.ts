@@ -1,10 +1,11 @@
+import { Express } from 'express';
 import logger from '../config/logger.js';
 
-const logRegisteredRoutes = (app) => {
+const logRegisteredRoutes = (app: Express) => {
     app._router.stack.forEach(print.bind(null, []));
 };
 
-function print(path, layer) {
+function print(path: string[], layer: any) {
     if (layer.route) {
         layer.route.stack.forEach(print.bind(null, path.concat(split(layer.route.path))));
     } else if (layer.name === 'router' && layer.handle.stack) {
@@ -18,7 +19,7 @@ function print(path, layer) {
     }
 }
 
-function split(thing) {
+function split(thing: any) {
     if (typeof thing === 'string') {
         return thing.split('/');
     }

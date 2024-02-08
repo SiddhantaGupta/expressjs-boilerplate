@@ -1,10 +1,13 @@
+import { RegisterationSchema } from '../validations/auth.validation.js';
+
 class UserRepository {
     constructor() {}
 
-    async insert(body) {
+    async insert(body: RegisterationSchema) {
         return body;
     }
-    async findByUsername(username) {
+
+    async findByUsername(username: string) {
         return {
             username: username,
             password: '12345678',

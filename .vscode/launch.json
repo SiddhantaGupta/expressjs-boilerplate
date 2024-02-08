@@ -9,7 +9,9 @@
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": ["<node_internals>/**"],
-            "program": "${workspaceFolder}\\src\\index.js",
+            "program": "${workspaceFolder}/src/index.ts",
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "outFiles": ["${workspaceFolder}/dist/**/*.js"],
             "outputCapture": "std"
         },
         // Requires nodemon to be installed globally or accessible by cli.
@@ -18,16 +20,18 @@
             "request": "launch",
             "name": "Launch Nodemon",
             "runtimeExecutable": "nodemon",
-            "program": "${workspaceFolder}\\src\\index.js",
+            "program": "${workspaceFolder}/src/index.ts",
+            "preLaunchTask": "tsc: watch - tsconfig.json",
+            "outFiles": ["${workspaceFolder}/dist/**/*.js"],
             "restart": true,
             "outputCapture": "std"
         },
         // Attach to a seperately running nodemon process.
-        // At the time of creating nodemon's --inspect exposes debugger on port 9229
+        // At the time of creating nodemon --inspect exposes debugger on port 9229
         {
             "type": "node",
             "request": "attach",
-            "name": "Attach Nodemon",
+            "name": "Attach to Nodemon",
             "port": 9229,
             "restart": true,
             "outputCapture": "std"

@@ -1,6 +1,6 @@
 import winston from 'winston';
 import config from './config.js';
-import Environments from './globals/environments.js';
+import Environments from '../globals/Environments.js';
 
 /** Log Levels
     {
@@ -21,7 +21,7 @@ const enumerateErrorFormat = winston.format((info) => {
     return info;
 });
 
-let winstonTransports = [
+let winstonTransports: winston.transport[] = [
     new winston.transports.Console({
         stderrLevels: ['error'],
     }),
