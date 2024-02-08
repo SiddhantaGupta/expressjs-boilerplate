@@ -1,10 +1,12 @@
 import config from './config/config.js';
 import setupApp from './app.js';
 import logger from './config/logger.js';
+import logRegisteredRoutes from './utilities/logRegisteredRoutes.js';
 
 const app = await setupApp();
 const server = app.listen(config.port, () => {
     logger.info(`Listening on port ${config.port}`);
+    logRegisteredRoutes(app);
 });
 
 const unexpectedErrorHandler = (error) => {
