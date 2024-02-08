@@ -1,6 +1,8 @@
 import express from 'express';
-import rootRoutes from './rootRoutes.js';
-import authRoutes from './authRoutes.js';
+import config from '../../../config/config.js';
+import rootRoutes from './root.routes.js';
+import authRoutes from './auth.routes.js';
+import Environments from '../../../config/globals/environments.js';
 
 const router = express.Router();
 
@@ -10,14 +12,14 @@ const defaultRoutes = [
 ];
 
 const devRoutes = [
-    // routes available only in development mode like swagger docs
+    // routes available only in local or development mode like swagger docs
 ];
 
 defaultRoutes.forEach((route) => {
     router.use(route.path, route.routes);
 });
 
-if (process.env.NODE_ENV === 'development') {
+if (config.env == Environments.Local || config.env === Environments.Development) {
     devRoutes.forEach((route) => {
         router.use(route.path, route.route);
     });

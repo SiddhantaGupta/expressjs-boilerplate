@@ -1,6 +1,8 @@
 import httpStatus from 'http-status';
 import ApiError from '../../utilities/ApiError.js';
 import logger from '../../config/logger.js';
+import config from '../../config/config.js';
+import Environments from '../../config/globals/environments.js';
 
 const errorConverter = (err, req, res, next) => {
     let error = err;
@@ -16,7 +18,7 @@ const errorConverter = (err, req, res, next) => {
 
 const errorHandler = (err, req, res, next) => {
     let { statusCode, message, data } = err;
-    if (process.env.NODE_ENV === 'production' && !err.isOperational) {
+    if (config.env === Environments.Production && !err.isOperational) {
         statusCode = httpStatus.INTERNAL_SERVER_ERROR;
         message = httpStatus[httpStatus.INTERNAL_SERVER_ERROR];
     }
@@ -27,10 +29,10 @@ const errorHandler = (err, req, res, next) => {
         code: statusCode,
         message,
         ...(data && { data: data }),
-        ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
+        ...(config.env === Environments.Local && { stack: err.stack }),
     };
 
-    if (process.env.NODE_ENV === 'development') {
+    if (config.env === Environments.Local) {
         logger.error(err);
     }
 

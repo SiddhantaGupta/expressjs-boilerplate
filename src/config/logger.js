@@ -1,5 +1,6 @@
 import winston from 'winston';
 import config from './config.js';
+import Environments from './globals/environments.js';
 
 /** Log Levels
     {
@@ -27,7 +28,7 @@ let winstonTransports = [
 ];
 
 let winstonFormat;
-if (config.env === 'development') {
+if (config.env === Environments.Local) {
     winstonFormat = winston.format.combine(
         enumerateErrorFormat(),
         winston.format.colorize(),
@@ -40,7 +41,7 @@ if (config.env === 'development') {
             } ${Object.keys(metadata).length ? JSON.stringify(metadata) : ''}`;
         }),
     );
-} else if (config.env === 'production') {
+} else if (config.env === Environments.Production) {
     winstonFormat = winston.format.combine(
         enumerateErrorFormat(),
         winston.format.errors({ message: true }),
