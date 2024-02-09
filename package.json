@@ -5,13 +5,14 @@
     "author": "Siddhanta Gupta",
     "license": "MIT",
     "keywords": [],
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "type": "module",
     "scripts": {
-        "build": "rimraf dist && npx tsc",
+        "build": "rimraf dist && tsc && tsc-alias",
+        "build:watch": "npm run build && concurrently --kill-others --raw \"tsc -w\" \"tsc-alias -w\" ",
         "start": "node dist/index.js",
-        "dev": "concurrently \"tsc -w\" \"nodemon dist/index.js\"",
-        "debug": "concurrently \"tsc -w\" \"nodemon --inspect dist/index.js\""
+        "start:watch": "concurrently --kill-others \"tsc -w\" \"tsc-alias -w\" \"nodemon dist/index.js\"",
+        "start:debug": "concurrently --kill-others \"tsc -w\" \"tsc-alias -w\" \"nodemon --inspect=9229 dist/index.js\""
     },
     "dependencies": {
         "cors": "^2.8.5",
@@ -31,6 +32,7 @@
         "concurrently": "^8.2.2",
         "nodemon": "^3.0.3",
         "rimraf": "^5.0.5",
+        "tsc-alias": "^1.8.8",
         "typescript": "^5.3.3"
     }
 }

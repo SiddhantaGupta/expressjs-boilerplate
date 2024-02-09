@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "build:watch",
+            "group": "build",
+            // $tsc-watch only works as problemMatcher if the output of script is similar to runnign tsc -w
+            // when using concurrently the --raw flag needs to be given
+            "problemMatcher": ["$tsc-watch"],
+            "isBackground": true,
+            "label": "npm: build:watch",
+            "detail": "npm run build && concurrently --kill-others --raw \"tsc -w\" \"tsc-alias -w\" "
+        }
+    ]
+}

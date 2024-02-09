@@ -1,6 +1,6 @@
 import { fromZodError } from 'zod-validation-error';
 import httpStatus from 'http-status';
-import ApiError from '../utilities/ApiError.js';
+import ApiError from '@utilities/ApiError.js';
 import { Schema } from 'zod';
 
 const validate = async (schema: Schema, data: any) => {

@@ -1,6 +1,6 @@
 import winston from 'winston';
-import config from './config.js';
-import Environments from '../globals/Environments.js';
+import config from '@config/config.js';
+import Environments from '@globals/Environments.js';
 
 /** Log Levels
     {

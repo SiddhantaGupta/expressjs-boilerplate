@@ -1,8 +1,8 @@
 import httpStatus from 'http-status';
-import ApiError from '../../utilities/ApiError.js';
-import logger from '../../config/logger.js';
-import config from '../../config/config.js';
-import Environments from '../../globals/Environments.js';
+import ApiError from '@utilities/ApiError.js';
+import logger from '@config/logger.js';
+import config from '@config/config.js';
+import Environments from '@globals/Environments.js';
 import { Request, Response, NextFunction } from 'express';
 
 const errorConverter = (err: Error, req: Request, res: Response, next: NextFunction) => {

@@ -10,7 +10,7 @@
             "name": "Launch Program",
             "skipFiles": ["<node_internals>/**"],
             "program": "${workspaceFolder}/src/index.ts",
-            "preLaunchTask": "tsc: build - tsconfig.json",
+            "preLaunchTask": "npm: build",
             "outFiles": ["${workspaceFolder}/dist/**/*.js"],
             "outputCapture": "std"
         },
@@ -21,13 +21,14 @@
             "name": "Launch Nodemon",
             "runtimeExecutable": "nodemon",
             "program": "${workspaceFolder}/src/index.ts",
-            "preLaunchTask": "tsc: watch - tsconfig.json",
+            "preLaunchTask": "npm: build:watch",
             "outFiles": ["${workspaceFolder}/dist/**/*.js"],
             "restart": true,
             "outputCapture": "std"
         },
         // Attach to a seperately running nodemon process.
-        // At the time of creating nodemon --inspect exposes debugger on port 9229
+        // 9229 is the default inspect port and it has also been set in package.json script
+        // to make sure debugger always runs on this port.
         {
             "type": "node",
             "request": "attach",

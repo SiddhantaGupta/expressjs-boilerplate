@@ -3,17 +3,15 @@ import express from 'express';
 
 // middlewares
 import cors from 'cors';
-import { errorConverter, errorHandler } from './api/middlewares/error.middleware.js';
-import * as morgan from './config/morgan.js';
+import { errorConverter, errorHandler } from '@middlewares/error.middleware.js';
+import * as morgan from '@config/morgan.js';
 
 // routes
-import routesV1 from './api/routes/v1/index.js';
+import routesV1 from '@routes/v1/index.js';
 
 // libs / utils
 import httpStatus from 'http-status';
-import ApiError from './utilities/ApiError.js';
-
-import { Response } from 'express';
+import ApiError from '@utilities/ApiError.js';
 
 const setupApp = async () => {
     const app = express();

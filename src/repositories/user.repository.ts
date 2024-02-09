@@ -1,4 +1,4 @@
-import { RegisterationSchema } from '../validations/auth.validation.js';
+import { RegisterationSchema } from '@validations/auth.validation.js';
 
 class UserRepository {
     constructor() {}

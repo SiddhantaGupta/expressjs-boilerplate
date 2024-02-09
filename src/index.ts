@@ -1,7 +1,7 @@
-import config from './config/config.js';
 import setupApp from './app.js';
-import logger from './config/logger.js';
-import logRegisteredRoutes from './utilities/logRegisteredRoutes.js';
+import logRegisteredRoutes from '@utilities/logRegisteredRoutes.js';
+import config from '@config/config.js';
+import logger from '@config/logger.js';
 
 const app = await setupApp();
 const server = app.listen(config.port, () => {

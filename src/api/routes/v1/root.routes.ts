@@ -1,7 +1,7 @@
 import express from 'express';
 import httpStatus from 'http-status';
-import tryCatch from '../../../utilities/tryCatch.js';
-import config from '../../../config/config.js';
+import tryCatch from '@utilities/tryCatch.js';
+import config from '@config/config.js';
 import { Request, Response } from 'express';
 
 const router = express.Router();

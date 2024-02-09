@@ -1,4 +1,4 @@
-import users from '../../repositories/user.repository.js';
+import users from '@repositories/user.repository.js';
 
 const register = async (username: string, password: string) => {
     return await users.insert({ username, password });

@@ -1,8 +1,8 @@
 import express from 'express';
-import config from '../../../config/config.js';
-import rootRoutes from './root.routes.js';
-import authRoutes from './auth.routes.js';
-import Environments from '../../../globals/Environments.js';
+import config from '@config/config.js';
+import rootRoutes from '@routes/v1/root.routes.js';
+import authRoutes from '@routes/v1/auth.routes.js';
+import Environments from '@globals/Environments.js';
 import { Router } from 'express';
 
 const router = express.Router();

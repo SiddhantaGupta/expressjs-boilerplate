@@ -1,5 +1,5 @@
 import { Express } from 'express';
-import logger from '../config/logger.js';
+import logger from '@config/logger.js';
 
 const logRegisteredRoutes = (app: Express) => {
     app._router.stack.forEach(print.bind(null, []));
