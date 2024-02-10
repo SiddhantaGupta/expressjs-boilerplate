@@ -1,0 +1,14 @@
+{
+    "Create tryCatch controller": {
+        "scope": "javascript,typescript",
+        "prefix": "tcc",
+        "body": [
+            "const ${1:controller} = tryCatch(async (req: Request, res: Response) => {",
+            "	const ${2:validatedBody} = await validate(${3:schema}, req.body);",
+            "	const ${4:responseData} = await authService.register(${2:validatedBody});",
+            "	res.status(httpStatus.${5:OK}).send(${4:responseData});",
+            "});"
+        ],
+        "description": "Insert boilerplate for a controller"
+    }
+}

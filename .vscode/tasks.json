@@ -5,7 +5,7 @@
             "type": "npm",
             "script": "build:watch",
             "group": "build",
-            // $tsc-watch only works as problemMatcher if the output of script is similar to runnign tsc -w
+            // $tsc-watch only works as problemMatcher if the output of script is similar to running tsc -w
             // when using concurrently the --raw flag needs to be given
             "problemMatcher": ["$tsc-watch"],
             "isBackground": true,
