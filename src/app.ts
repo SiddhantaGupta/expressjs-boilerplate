@@ -12,6 +12,8 @@ import routesV1 from '@routes/v1/index.js';
 // libs / utils
 import httpStatus from 'http-status';
 import ApiError from '@utilities/ApiError.js';
+import config from '@config/config.js';
+import swaggerDocs from '@config/swagger.js';
 
 const setupApp = async () => {
     const app = express();
@@ -29,6 +31,7 @@ const setupApp = async () => {
     app.use(morgan.successHandler);
     app.use(morgan.errorHandler);
 
+    swaggerDocs(app, config.port);
     app.use('/api/v1', routesV1);
 
     // send back a 404 error for any unknown api request

@@ -6,8 +6,19 @@ import { Request, Response } from 'express';
 
 const router = express.Router();
 
+/**
+ * @openapi
+ *  /api/v1/healthcheck:
+ *      get:
+ *          tag:
+ *              - Healthcheck
+ *          description: Responds if the app is up and running
+ *          responses:
+ *              200:
+ *                  description: Returns a string
+ */
 router.get(
-    '/health',
+    '/healthcheck',
     tryCatch((req: Request, res: Response) =>
         res.status(httpStatus.OK).send(`${config.appName} service running.`),
     ),

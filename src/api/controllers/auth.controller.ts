@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import authService from '@services/auth.service.js';
 import tryCatch from '@utilities/tryCatch.js';
-import { registerationSchema, loginSchema } from '@validations/auth.validation.js';
+import { registerationSchema, loginSchema } from '@/validations/schemas/auth.validation.js';
 import { validate } from '@validations/validate.js';
 import { Request, Response } from 'express';
 

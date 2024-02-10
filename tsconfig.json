@@ -1,7 +1,7 @@
 /* Visit https://aka.ms/tsconfig to read more about this file */
 {
     "compilerOptions": {
-        "target": "ES2020",
+        "target": "ES2022",
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
         "sourceMap": true,
@@ -10,19 +10,20 @@
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "skipLibCheck": true,
-        "baseUrl": "./src",
+        "resolveJsonModule": true,
+        "baseUrl": "./",
         "paths": {
-            "@/*": ["*"],
-            "@app-types/*": ["types/*"],
-            "@globals/*": ["globals/*"],
-            "@config/*": ["config/*"],
-            "@validations/*": ["validations/*"],
-            "@utilities/*": ["utilities/*"],
-            "@repositories/*": ["repositories/*"],
-            "@controllers/*": ["api/controllers/*"],
-            "@services/*": ["api/services/*"],
-            "@routes/*": ["api/routes/*"],
-            "@middlewares/*": ["api/middlewares/*"]
+            "@/*": ["src/*"],
+            "@app-types/*": ["src/types/*"],
+            "@globals/*": ["src/globals/*"],
+            "@config/*": ["src/config/*"],
+            "@validations/*": ["src/validations/*"],
+            "@utilities/*": ["src/utilities/*"],
+            "@repositories/*": ["src/repositories/*"],
+            "@controllers/*": ["src/api/controllers/*"],
+            "@services/*": ["src/api/services/*"],
+            "@routes/*": ["src/api/routes/*"],
+            "@middlewares/*": ["src/api/middlewares/*"]
         }
     },
     "include": ["src/**/*"]
