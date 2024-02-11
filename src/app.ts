@@ -5,6 +5,7 @@ import express from 'express';
 import cors from 'cors';
 import { errorConverter, errorHandler } from '@middlewares/error.middleware.js';
 import * as morgan from '@config/morgan.js';
+import { rateLimiter, authRateLimiter } from '@middlewares/rateLimiter.middleware.js';
 
 // routes
 import routesV1 from '@routes/v1/index.js';
@@ -18,6 +19,7 @@ import { jwtStrategy } from '@config/passport.js';
 import ApiError from '@utilities/ApiError.js';
 import config from '@config/config.js';
 import swaggerDocs from '@config/swagger.js';
+import Environments from '@globals/Environments.js';
 
 const setupApp = async () => {
     const app = express();
@@ -48,6 +50,11 @@ const setupApp = async () => {
     app.use(morgan.successHandler);
     app.use(morgan.errorHandler);
 
+    if (config.env !== Environments.Local) {
+        app.use(rateLimiter);
+        app.use('/api/v1/auth', authRateLimiter);
+    }
+
     swaggerDocs(app, config.port);
     app.use('/api/v1', routesV1);
 
@@ -58,7 +65,6 @@ const setupApp = async () => {
 
     // convert error to ApiError, if needed
     app.use(errorConverter);
-
     // handle error
     app.use(errorHandler);
 

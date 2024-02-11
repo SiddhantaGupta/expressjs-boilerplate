@@ -21,6 +21,8 @@ const config = {
     },
     jwt: {
         secret: process.env.JWT_SECRET || 'supersecret',
+        accessTokenExpirationMinutes: Number(process.env.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES) || 30,
+        refreshTokenExpirationDays: Number(process.env.JWT_REFRESH_TOKEN_EXPIRATION_DAYS) || 14,
     },
 };
 

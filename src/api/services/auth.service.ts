@@ -1,5 +1,5 @@
 import { LoginSchema, RegisterationSchema } from '@validations/schemas/auth.validation.js';
-import users from '@repositories/user.repository.js';
+import * as Users from '@repositories/user.repository.js';
 import bcrypt from 'bcrypt';
 import globals from '@globals/globals.js';
 import ApiError from '@utilities/ApiError.js';
@@ -9,7 +9,7 @@ import jwt from 'jsonwebtoken';
 import { roles } from '@config/roles.js';
 
 const register = async (registerBody: RegisterationSchema) => {
-    const userExists = (await users.findByEmail(registerBody.email))[0];
+    const userExists = await Users.findByEmail(registerBody.email);
     if (userExists) {
         throw new ApiError({
             statusCode: httpStatus.CONFLICT,
@@ -23,22 +23,28 @@ const register = async (registerBody: RegisterationSchema) => {
         });
     }
     registerBody.password = await bcrypt.hash(registerBody.password, globals.bcryptSaltRounds);
-    return (await users.insert(registerBody))[0];
+    return await Users.insert(registerBody);
 };
 
 const login = async (loginBody: LoginSchema) => {
-    const user = (await users.findByEmail(loginBody.email))[0];
-    const isPasswordMatch = await bcrypt.compare(loginBody.password, user.password);
-    if (!user || !isPasswordMatch) {
+    const user = await Users.findByEmail(loginBody.email);
+    if (!user) {
         throw new ApiError({
             statusCode: httpStatus.UNAUTHORIZED,
-            message: httpStatus[httpStatus.UNAUTHORIZED],
+            message: 'User does not exit.',
+        });
+    }
+    const isPasswordMatch = await bcrypt.compare(loginBody.password, user.password);
+    if (!isPasswordMatch) {
+        throw new ApiError({
+            statusCode: httpStatus.UNAUTHORIZED,
+            message: 'Incorrect Password',
         });
     }
     const payload = {
         sub: user.uuid,
         iat: Date.now(),
-        exp: Date.now() + 60 * 60 * 1000,
+        exp: Date.now() + config.jwt.accessTokenExpirationMinutes * 60 * 1000,
     };
     const accessToken = jwt.sign(payload, config.jwt.secret);
     return {

@@ -10,8 +10,8 @@ const router = express.Router();
  * @openapi
  *  /api/v1/healthcheck:
  *      get:
- *          tag:
- *              - Healthcheck
+ *          tags:
+ *              - Root
  *          description: Responds if the app is up and running
  *          responses:
  *              200:

@@ -1,6 +1,6 @@
 import { Strategy as JwtStrategy, ExtractJwt, StrategyOptions, VerifyCallback } from 'passport-jwt';
 import config from '@config/config.js';
-import users from '@repositories/user.repository.js';
+import * as Users from '@repositories/user.repository.js';
 
 const jwtOptions: StrategyOptions = {
     secretOrKey: config.jwt.secret,
@@ -9,7 +9,7 @@ const jwtOptions: StrategyOptions = {
 
 const jwtVerify: VerifyCallback = async (payload, done) => {
     try {
-        const user = await users.findByUuid(payload.sub);
+        const user = await Users.findByUuid(payload.sub);
         if (!user) {
             return done(null, false);
         }

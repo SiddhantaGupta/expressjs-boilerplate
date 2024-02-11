@@ -14,24 +14,20 @@ export type User = {
     updated_at: Date;
 };
 
-class UserRepository {
-    constructor() {}
-
-    async insert(body: RegisterationSchema): Promise<User[]> {
-        return await sql<User[]>`INSERT INTO users (email, password, role, first_name, last_name)
+async function insert(body: RegisterationSchema): Promise<User> {
+    return (
+        await sql<User[]>`INSERT INTO users (email, password, role, first_name, last_name)
         VALUES (${body.email}, ${body.password}, ${body.role}, ${body.firstName}, ${body.lastName})
-        RETURNING *`;
-    }
-
-    async findByEmail(email: string) {
-        return await sql<User[]>`SELECT * FROM users WHERE email=${email}`;
-    }
-
-    async findByUuid(uuid: string) {
-        return (await sql<User[]>`SELECT * FROM users WHERE uuid=${uuid}`)[0];
-    }
+        RETURNING *`
+    )[0];
 }
 
-const userRepository = new UserRepository();
+async function findByEmail(email: string): Promise<User> {
+    return (await sql<User[]>`SELECT * FROM users WHERE email=${email}`)[0];
+}
 
-export default userRepository;
+async function findByUuid(uuid: string): Promise<User> {
+    return (await sql<User[]>`SELECT * FROM users WHERE uuid=${uuid}`)[0];
+}
+
+export { insert, findByEmail, findByUuid };
