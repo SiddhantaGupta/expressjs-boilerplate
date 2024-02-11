@@ -19,6 +19,9 @@ const config = {
         username: process.env.DB_USERNAME || 'admin',
         password: process.env.DB_PASSWORD || '',
     },
+    jwt: {
+        secret: process.env.JWT_SECRET || 'supersecret',
+    },
 };
 
 export default config;

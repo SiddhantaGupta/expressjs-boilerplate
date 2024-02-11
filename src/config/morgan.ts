@@ -5,7 +5,7 @@ import Environments from '@globals/Environments.js';
 import { Request, Response } from 'express';
 
 morgan.token('message', (req: Request, res: Response) => res.locals.errorMessage || '');
-morgan.token('user', (req: Request, res: Response) => req.user?.username || '');
+morgan.token('user', (req: Request, res: Response) => req.user?.email || '');
 morgan.token('req-body', (req: Request) => JSON.stringify(req.body) || '');
 morgan.token('res-body', (req: Request, res: Response) => JSON.stringify(res.__custombody__) || '');
 

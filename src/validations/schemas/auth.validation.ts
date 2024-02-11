@@ -54,11 +54,39 @@ const registerationSchema = z.object({
     lastName: z.string().min(1),
 });
 
+/**
+ * @openapi
+ *  components:
+ *      schemas:
+ *          LoginUserInput:
+ *              type: object
+ *              required:
+ *                  - email
+ *                  - password
+ *              properties:
+ *                  email:
+ *                      type: string
+ *                      default: john.smith@example.com
+ *                  password:
+ *                      type: string
+ *                      default: Password@123
+ *          LoginUserResponse:
+ *              type: object
+ *              properties:
+ *                  user:
+ *                      $ref: '#/components/schemas/CreateUserResponse'
+ *                  tokens:
+ *                      type: object
+ *                      properties:
+ *                          access:
+ *                              type: string
+ */
 const loginSchema = z.object({
     email: z.string().min(1),
     password: z.string().min(8),
 });
 
 export type RegisterationSchema = z.infer<typeof registerationSchema>;
+export type LoginSchema = z.infer<typeof loginSchema>;
 
 export { registerationSchema, loginSchema };

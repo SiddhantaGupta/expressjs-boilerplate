@@ -11,6 +11,10 @@ import routesV1 from '@routes/v1/index.js';
 
 // libs / utils
 import httpStatus from 'http-status';
+import helmet from 'helmet';
+import compression from 'compression';
+import passport from 'passport';
+import { jwtStrategy } from '@config/passport.js';
 import ApiError from '@utilities/ApiError.js';
 import config from '@config/config.js';
 import swaggerDocs from '@config/swagger.js';
@@ -18,9 +22,22 @@ import swaggerDocs from '@config/swagger.js';
 const setupApp = async () => {
     const app = express();
 
-    app.use(cors());
+    // set security HTTP headers
+    app.use(helmet());
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
+    // gzip compression
+    app.use(compression());
+
+    const corsOptions = {
+        origin: [/https:\/\/.*\.example\.co\.in/, /https?:\/\/localhost(:[0-9]+)?/],
+        credentials: true,
+    };
+    app.use(cors(corsOptions));
+    app.options('*', cors(corsOptions));
+
+    app.use(passport.initialize());
+    passport.use('jwt', jwtStrategy);
 
     // setting __custombody__ as response body so that morgan can access it later
     const originalSend = app.response.send;

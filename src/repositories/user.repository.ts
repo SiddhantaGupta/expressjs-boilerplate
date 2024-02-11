@@ -23,11 +23,12 @@ class UserRepository {
         RETURNING *`;
     }
 
-    async findByUsername(username: string) {
-        return {
-            username: username,
-            password: '12345678',
-        };
+    async findByEmail(email: string) {
+        return await sql<User[]>`SELECT * FROM users WHERE email=${email}`;
+    }
+
+    async findByUuid(uuid: string) {
+        return (await sql<User[]>`SELECT * FROM users WHERE uuid=${uuid}`)[0];
     }
 }
 

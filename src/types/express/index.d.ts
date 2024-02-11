@@ -1,9 +1,11 @@
+import { User as AppUser } from '@repositories/user.repository.ts';
 export {};
 
 declare global {
     namespace Express {
+        export interface User extends AppUser {}
+
         export interface Request {
-            user?: any;
             locals?: any;
         }
 
