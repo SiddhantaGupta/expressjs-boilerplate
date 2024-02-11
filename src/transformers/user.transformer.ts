@@ -1,0 +1,8 @@
+import { User } from '@repositories/user.repository.js';
+
+export default async function userTransformer(source: User) {
+    let t: Partial<User> = source;
+    delete t.password;
+    delete t.is_deleted;
+    return t;
+}

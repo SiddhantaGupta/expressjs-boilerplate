@@ -7,30 +7,55 @@ import z from 'zod';
  *          CreateUserInput:
  *              type: object
  *              required:
- *                  - username
+ *                  - email
  *                  - password
+ *                  - role
+ *                  - firstName
+ *                  - lastName
  *              properties:
- *                  username:
+ *                  email:
  *                      type: string
  *                      default: john.smith@example.com
  *                  password:
  *                      type: string
  *                      default: Password@123
+ *                  role:
+ *                      type: number
+ *                      default: 1
+ *                  firstName:
+ *                      type: string
+ *                      default: John
+ *                  lastName:
+ *                      type: string
+ *                      default: Smith
  *          CreateUserResponse:
  *              type: object
  *              properties:
- *                  username:
+ *                  id:
  *                      type: string
- *                  password:
+ *                  email:
+ *                      type: string
+ *                  role:
+ *                      type: number
+ *                  first_name:
+ *                      type: string
+ *                  last_name:
+ *                      type: string
+ *                  created_at:
+ *                      type: string
+ *                  updated_at:
  *                      type: string
  */
 const registerationSchema = z.object({
-    username: z.string(),
+    email: z.string().min(1),
     password: z.string().min(8),
+    role: z.number(),
+    firstName: z.string().min(1),
+    lastName: z.string().min(1),
 });
 
 const loginSchema = z.object({
-    username: z.string(),
+    email: z.string().min(1),
     password: z.string().min(8),
 });
 

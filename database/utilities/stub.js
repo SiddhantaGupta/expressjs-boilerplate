@@ -8,9 +8,9 @@ const tableName = '';
  */
 export const up = async function (knex) {
     const migration = await knex.schema.createTable(tableName, function (table) {
-        table.bigIncrements('id');
-        table.string('ulid');
-        table.boolean('is_deleted');
+        table.bigIncrements('id').primary();
+        table.uuid('uuid').defaultTo(knex.raw('gen_random_uuid()')).notNullable();
+        table.boolean('is_deleted').notNullable().defaultTo(false);
         timestamps(knex, table);
     });
     await knex.raw(onUpdateTrigger(tableName));

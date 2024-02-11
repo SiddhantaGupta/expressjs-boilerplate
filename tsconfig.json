@@ -18,6 +18,7 @@
             "@globals/*": ["src/globals/*"],
             "@config/*": ["src/config/*"],
             "@validations/*": ["src/validations/*"],
+            "@transformers/*": ["src/transformers/*"],
             "@utilities/*": ["src/utilities/*"],
             "@repositories/*": ["src/repositories/*"],
             "@controllers/*": ["src/api/controllers/*"],
