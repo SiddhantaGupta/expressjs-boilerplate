@@ -19,6 +19,10 @@ const config = {
         username: process.env.DB_USERNAME || 'admin',
         password: process.env.DB_PASSWORD || '',
     },
+    redis: {
+        host: process.env.REDIS_HOST || 'localhost',
+        port: Number(process.env.PORT) || 6379,
+    },
     jwt: {
         secret: process.env.JWT_SECRET || 'supersecret',
         accessTokenExpirationMinutes: Number(process.env.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES) || 30,

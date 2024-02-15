@@ -17,6 +17,7 @@
             "@app-types/*": ["src/types/*"],
             "@globals/*": ["src/globals/*"],
             "@config/*": ["src/config/*"],
+            "@queues/*": ["src/queues/*"],
             "@validations/*": ["src/validations/*"],
             "@transformers/*": ["src/transformers/*"],
             "@utilities/*": ["src/utilities/*"],
