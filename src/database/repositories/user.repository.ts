@@ -1,5 +1,6 @@
-import { RegisterationSchema } from '@/validations/schemas/auth.validation.js';
+import { RegisterationSchema } from '@validations/schemas/auth.validation.js';
 import sql from '@config/database.js';
+import { ulid } from 'ulid';
 
 export type User = {
     id: string;
@@ -16,8 +17,10 @@ export type User = {
 
 async function insert(body: RegisterationSchema): Promise<User> {
     return (
-        await sql<User[]>`INSERT INTO users (email, password, role, first_name, last_name)
-        VALUES (${body.email}, ${body.password}, ${body.role}, ${body.firstName}, ${body.lastName})
+        await sql<User[]>`INSERT INTO users (id, email, password, role, first_name, last_name)
+        VALUES (${ulid()}, ${body.email}, ${body.password}, ${body.role}, ${body.firstName}, ${
+            body.lastName
+        })
         RETURNING *`
     )[0];
 }

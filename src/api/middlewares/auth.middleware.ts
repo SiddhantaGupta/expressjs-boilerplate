@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import ApiError from '@utilities/ApiError.js';
 import { rolePermissionMap } from '@config/roles.js';
 import { Request, Response, NextFunction } from 'express';
-import { User } from '@repositories/user.repository.js';
+import { User } from '@database/repositories/user.repository.js';
 
 const verifyCallback =
     (req: Request, resolve: Function, reject: Function, requiredPermissions: string[]) =>

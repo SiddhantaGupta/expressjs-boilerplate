@@ -1,4 +1,4 @@
-import { User as AppUser } from '@repositories/user.repository.ts';
+import { User as AppUser } from '@database/repositories/user.repository.ts';
 export {};
 
 declare global {

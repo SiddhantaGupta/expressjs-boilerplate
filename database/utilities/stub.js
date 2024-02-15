@@ -8,8 +8,7 @@ const tableName = '';
  */
 export const up = async function (knex) {
     const migration = await knex.schema.createTable(tableName, function (table) {
-        table.bigIncrements('id').primary();
-        table.uuid('uuid').defaultTo(knex.raw('gen_random_uuid()')).notNullable();
+        table.string('id', 26).notNullable().primary();
         table.boolean('is_deleted').notNullable().defaultTo(false);
         timestamps(knex, table);
     });

@@ -1,4 +1,4 @@
-import { User } from '@repositories/user.repository.js';
+import { User } from '@database/repositories/user.repository.js';
 
 export default async function userTransformer(source: User) {
     let t: Partial<User> = source;

@@ -8,8 +8,7 @@ const tableName = 'users';
  */
 export const up = async function (knex) {
     const migration = await knex.schema.createTable(tableName, function (table) {
-        table.bigIncrements('id').primary();
-        table.uuid('uuid').defaultTo(knex.raw('gen_random_uuid()')).notNullable();
+        table.string('id', 26).notNullable().primary();
         table.string('email').notNullable().unique().index();
         table.string('password').notNullable();
         table.integer('role').notNullable();

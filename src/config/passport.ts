@@ -1,6 +1,6 @@
 import { Strategy as JwtStrategy, ExtractJwt, StrategyOptions, VerifyCallback } from 'passport-jwt';
 import config from '@config/config.js';
-import * as Users from '@repositories/user.repository.js';
+import * as Users from '@database/repositories/user.repository.js';
 
 const jwtOptions: StrategyOptions = {
     secretOrKey: config.jwt.secret,

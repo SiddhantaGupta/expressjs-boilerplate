@@ -1,5 +1,5 @@
 import { LoginSchema, RegisterationSchema } from '@validations/schemas/auth.validation.js';
-import * as Users from '@repositories/user.repository.js';
+import * as Users from '@database/repositories/user.repository.js';
 import bcrypt from 'bcrypt';
 import globals from '@globals/globals.js';
 import ApiError from '@utilities/ApiError.js';
