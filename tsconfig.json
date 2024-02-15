@@ -18,6 +18,7 @@
             "@globals/*": ["src/globals/*"],
             "@config/*": ["src/config/*"],
             "@queues/*": ["src/queues/*"],
+            "@mail/*": ["src/mail/*"],
             "@validations/*": ["src/validations/*"],
             "@transformers/*": ["src/transformers/*"],
             "@utilities/*": ["src/utilities/*"],

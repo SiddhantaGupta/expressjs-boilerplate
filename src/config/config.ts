@@ -23,6 +23,14 @@ const config = {
         host: process.env.REDIS_HOST || 'localhost',
         port: Number(process.env.PORT) || 6379,
     },
+    mail: {
+        host: process.env.MAIL_HOST || '',
+        port: Number(process.env.MAIL_PORT) || 465,
+        username: process.env.MAIL_USERNAME || '',
+        password: process.env.MAIL_PASSWORD || '',
+        secure: process.env.MAIL_SECURE?.toLowerCase() === 'true' ? true : false,
+        pool: process.env.MAIL_POOL?.toLowerCase() === 'true' ? true : false,
+    },
     jwt: {
         secret: process.env.JWT_SECRET || 'supersecret',
         accessTokenExpirationMinutes: Number(process.env.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES) || 30,
