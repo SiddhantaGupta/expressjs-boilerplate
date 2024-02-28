@@ -4,7 +4,6 @@ import { ulid } from 'ulid';
 
 export type User = {
     id: string;
-    uuid: string;
     email: string;
     password: string;
     role: number;
@@ -29,8 +28,8 @@ async function findByEmail(email: string): Promise<User> {
     return (await sql<User[]>`SELECT * FROM users WHERE email=${email}`)[0];
 }
 
-async function findByUuid(uuid: string): Promise<User> {
-    return (await sql<User[]>`SELECT * FROM users WHERE uuid=${uuid}`)[0];
+async function findById(id: string): Promise<User> {
+    return (await sql<User[]>`SELECT * FROM users WHERE id=${id}`)[0];
 }
 
-export { insert, findByEmail, findByUuid };
+export { insert, findByEmail, findById };

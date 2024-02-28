@@ -9,7 +9,7 @@ const jwtOptions: StrategyOptions = {
 
 const jwtVerify: VerifyCallback = async (payload, done) => {
     try {
-        const user = await Users.findByUuid(payload.sub);
+        const user = await Users.findById(payload.sub);
         if (!user) {
             return done(null, false);
         }

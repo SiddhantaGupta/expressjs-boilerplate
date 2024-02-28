@@ -42,16 +42,14 @@ const login = async (loginBody: LoginSchema) => {
         });
     }
     const payload = {
-        sub: user.uuid,
+        sub: user.id,
         iat: Date.now(),
         exp: Date.now() + config.jwt.accessTokenExpirationMinutes * 60 * 1000,
     };
     const accessToken = jwt.sign(payload, config.jwt.secret);
     return {
         user: user,
-        tokens: {
-            access: accessToken,
-        },
+        tokens: { access: accessToken },
     };
 };
 
